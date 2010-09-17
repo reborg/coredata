@@ -1,0 +1,6 @@
+[submodule "vendor/mocha-on-bacon"]
+	path = vendor/mocha-on-bacon
+	url = http://github.com/alloy/mocha-on-bacon.git
+[submodule "vendor/mocha"]
+	path = vendor/mocha
+	url = http://github.com/floehopper/mocha.git

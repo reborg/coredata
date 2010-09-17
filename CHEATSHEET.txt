@@ -1,0 +1,4 @@
+# Git Submodules http://woss.name/blog/2008/4/9/using-git-submodules-to-track-plugins.html
+git submodule add http://github.com/alloy/mocha-on-bacon.git vendor/mocha-on-bacon
+git submodule init # After a fresh checkout
+git remote update # After someonelse's update on the submodule
