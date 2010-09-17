@@ -1,14 +1,12 @@
-# Rakefile for Bacon.  -*-ruby-*-
+# Rakefile for Macaruby.  -*-ruby-*-
 require 'rake/rdoctask'
 require 'rake/testtask'
-
 
 desc "Run all the tests"
 task :default => [:test]
 
 desc "Do predistribution stuff"
 task :predist => [:chmod, :changelog, :rdoc]
-
 
 desc "Make an archive as .tar.gz"
 task :dist => [:test, :predist] do
@@ -22,10 +20,6 @@ def git_tree_version
   if File.directory?(".git")
     @tree_version ||= `git describe`.strip.sub('-', '.')
     @tree_version << ".0"  unless @tree_version.count('.') == 2
-  else
-    $: << "lib"
-    require 'bacon'
-    @tree_version = Bacon::VERSION
   end
   @tree_version
 end
@@ -35,7 +29,7 @@ def gem_version
 end
 
 def release
-  "bacon-#{git_tree_version}"
+  "macaruby-#{git_tree_version}"
 end
 
 def manifest
@@ -69,12 +63,12 @@ end
 
 desc "Generate RDox"
 task "RDOX" do
-  sh "bin/bacon -Ilib --automatic --specdox >RDOX"
+  sh "bacon -Ilib --automatic --specdox >RDOX"
 end
 
 desc "Run all the tests"
 task :test do
-  ruby "bin/bacon -Ilib --automatic --quiet"
+  sh "bacon -Ilib --automatic --quiet"
 end
 
 
@@ -91,29 +85,24 @@ rescue LoadError
   # Too bad.
 else
   spec = Gem::Specification.new do |s|
-    s.name            = "bacon"
+    s.name            = "macaruby"
     s.version         = gem_version
     s.platform        = Gem::Platform::RUBY
-    s.summary         = "a small RSpec clone"
+    s.summary         = "object persistence layer based on CoreData for MacRuby"
 
     s.description = <<-EOF
-Bacon is a small RSpec clone weighing less than 350 LoC but
-nevertheless providing all essential features.
-
-http://github.com/chneukirchen/bacon
+Macaruby. Serve with parmigiano on top.
+http://github.com/reborg/macaruby
     EOF
 
     s.files           = manifest + %w(RDOX ChangeLog)
-    s.bindir          = 'bin'
-    s.executables     << 'bacon'
     s.require_path    = 'lib'
     s.has_rdoc        = true
     s.extra_rdoc_files = ['README', 'RDOX']
     s.test_files      = []
-
-    s.author          = 'Christian Neukirchen'
-    s.email           = 'chneukirchen@gmail.com'
-    s.homepage        = 'http://github.com/chneukirchen/bacon'
+    s.author          = 'Reborg'
+    s.email           = 'reborg@reborg.net'
+    s.homepage        = 'http://reborg.net'
   end
 
   task :gem => [:chmod, :changelog]
@@ -129,12 +118,12 @@ desc "Generate RDoc documentation"
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.options << '--line-numbers' << '--inline-source' <<
     '--main' << 'README' <<
-    '--title' << 'Bacon Documentation' <<
+    '--title' << 'Macaruby Documentation' <<
     '--charset' << 'utf-8'
   rdoc.rdoc_dir = "doc"
   rdoc.rdoc_files.include 'README'
   rdoc.rdoc_files.include 'COPYING'
   rdoc.rdoc_files.include 'RDOX'
-  rdoc.rdoc_files.include('lib/bacon.rb')
+  rdoc.rdoc_files.include('lib/**/*.rb')
 end
 task :rdoc => ["RDOX"]
