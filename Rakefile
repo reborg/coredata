@@ -68,7 +68,7 @@ end
 
 desc "Run all the tests"
 task :test do
-  sh "macruby #{File.dirname(__FILE__)}/vendor/bacon/bin/bacon -Ilib --automatic --quiet"
+  sh "macruby #{File.dirname(__FILE__)}/vendor/bacon/bin/bacon -a"
 end
 
 

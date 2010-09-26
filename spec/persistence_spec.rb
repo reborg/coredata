@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + "/spec_helper"
+require File.dirname(__FILE__) + "/spechelper"
 require 'persistence'
 
 describe "Persistence" do
