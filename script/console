@@ -1,0 +1,15 @@
+#!/usr/bin/env macruby
+# File: script/console
+irb = 'macirb'
+libs =  " -r irb/completion"
+libs <<  " -r #{File.dirname(__FILE__) + '/../config/environment.rb'}"
+puts "Loading MacaRuby interactive console"
+class Object
+  def mm
+    (self.methods(true, true) - Object.methods(true,true)).sort
+  end
+  def ff(what)
+    self.methods(true, true).select {|m| m.to_s =~ /what/} 
+  end
+end
+exec "#{irb} #{libs} --simple-prompt"

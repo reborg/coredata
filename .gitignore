@@ -6,3 +6,5 @@ ann-*
 *.tar.gz
 doc
 pkg
+tags
+learn
