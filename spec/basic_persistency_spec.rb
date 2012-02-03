@@ -1,6 +1,9 @@
 require File.dirname(__FILE__) + "/spechelper"
+require 'coredata'
 
-class Book; end
+class Book 
+  include CoreData
+end
 
 describe "basic CRUD operations on persistent objects" do
   
@@ -8,9 +11,9 @@ describe "basic CRUD operations on persistent objects" do
     @book = Book.new
   end
 
-  #it 'there are no persisted books at startup' do
-  #  Book.all.size.should.be == 0
-  #end
+  it 'there are no persisted books at startup' do
+    Book.all.size.should.be == 0
+  end
 
   #it 'persistent objects are given an ID' do
   #  Book.create.id.should.not.be nil 
