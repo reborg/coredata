@@ -3,7 +3,7 @@
 irb = 'macirb'
 libs =  " -r irb/completion"
 libs <<  " -r #{File.dirname(__FILE__) + '/../config/environment.rb'}"
-puts "Loading MacaRuby interactive console"
+puts "Loading CoreData interactive console"
 class Object
   def mm
     (self.methods(true, true) - Object.methods(true,true)).sort

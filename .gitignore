@@ -1,10 +1,9 @@
 *~
 ChangeLog
-TODO.pom
+TODO.txt
 RDOX
 ann-*
 *.tar.gz
-doc
 pkg
 tags
-learn
+docs

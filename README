@@ -1,13 +1,26 @@
-= Macaruby -- Object persistence based on CoreData for MacRuby
+= CoreData -- Object persistence on top of the native Core Data persistency framework
 
-Macaruby is an object persistence library inspired by ActiveRecord.
-Macaruby sits on top of CoreData and allows MacRuby applications to
-persist their object seamlessly.
+CoreData is an object persistence library inspired by ActiveRecord and DataMapper.
+CoreData sits on top of the native Core Data and allows MacRuby applications to
+persist their objects seamlessly.
 
 == Whirl-wind tour
 
+Install: macgem install coredata
+Use:
+
+  require 'coredata'
+  class PersistentObject
+    include CoreData
+    property :id, Serial
+    property :title, String
+  end
+
+  @my_obj = PersistentObject.create(:title => "Hello World!")
+
 == History
 
+* 2012-02-01 Reprise, make it usable other than the initial idea.
 * 2010-09-17 first release
 
 == Contact
@@ -16,17 +29,18 @@ Please mail bugs, suggestions and patches to
 <mailto:reborg@reborg.net>.
 
 Git repository (patches rebased on HEAD are most welcome):
-http://github.com/reborg/macaruby
-git://github.com/reborg/macaruby.git
+http://github.com/reborg/coredata
+git://github.com/reborg/coredata.git
 
 
 == Copying
 
-Copyright (C) 2010 Renzo Borgatti <http://reborg.net>
+Copyright (C) 2012 Renzo Borgatti <http://reborg.net>
 
-Macaruby is freely distributable under the terms of an MIT-style license.
+CoreData is freely distributable under the terms of an MIT-style license.
 See COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 == Links
 
 Renzo Borgatti:: <http://reborg.net>
+DataMapper getting started:: <http://datamapper.org/getting-started.html>

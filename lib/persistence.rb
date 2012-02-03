@@ -8,7 +8,11 @@ require 'singleton'
 # by clients of this class. Persistence model can change in the future
 # if shared persistence turns out to be a bad idea (when you save an
 # entity all the unsaved entity in the context will be saved as well
-# and that could not be the expected behavior)
+# and that could not be the expected behavior). Multiple contexts are
+# how the native Core Data handles concurrency of threads trying to
+# change and persist objects pointing to the same logical entity in
+# the database.
+#
 class Persistence
 
   include Singleton
@@ -97,7 +101,7 @@ class Persistence
     end
 
     ##
-    # Where to search for the database instance which is
+    # This is where to search for the database instance which is
     # by default the application support dir. The store
     # will be created if doesn't exist yet
     def default_store

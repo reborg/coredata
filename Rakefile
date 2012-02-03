@@ -1,4 +1,4 @@
-# Rakefile for Macaruby.  -*-ruby-*-
+# Rakefile for CoreData.  -*-ruby-*-
 require 'rake/rdoctask'
 require 'rake/testtask'
 
@@ -29,7 +29,7 @@ def gem_version
 end
 
 def release
-  "macaruby-#{git_tree_version}"
+  "coredata-#{git_tree_version}"
 end
 
 def manifest
@@ -85,14 +85,14 @@ rescue LoadError
   # Too bad.
 else
   spec = Gem::Specification.new do |s|
-    s.name            = "macaruby"
+    s.name            = "coredata"
     s.version         = gem_version
     s.platform        = Gem::Platform::RUBY
     s.summary         = "object persistence layer based on CoreData for MacRuby"
 
     s.description = <<-EOF
-Macaruby. Serve with parmigiano on top.
-http://github.com/reborg/macaruby
+CoreData. Serve with parmigiano on top.
+http://github.com/reborg/coredata
     EOF
 
     s.files           = manifest + %w(RDOX ChangeLog)
@@ -118,7 +118,7 @@ desc "Generate RDoc documentation"
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.options << '--line-numbers' << '--inline-source' <<
     '--main' << 'README' <<
-    '--title' << 'Macaruby Documentation' <<
+    '--title' << 'CoreData Documentation' <<
     '--charset' << 'utf-8'
   rdoc.rdoc_dir = "doc"
   rdoc.rdoc_files.include 'README'
